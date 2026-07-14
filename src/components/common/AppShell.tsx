@@ -3,6 +3,7 @@ import { History, Home as HomeIcon, Settings } from '@mui/icons-material';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OfflineBanner } from './OfflineBanner';
+import { Footer } from './Footer';
 
 const NAV_ROUTES = ['/', '/history', '/settings'];
 
@@ -26,6 +27,7 @@ export function AppShell() {
       <Box sx={{ flex: 1 }}>
         <Outlet />
       </Box>
+      <Footer />
       <BottomNavigation
         value={activeIndex}
         onChange={(_, newIndex: number) => navigate(NAV_ROUTES[newIndex])}

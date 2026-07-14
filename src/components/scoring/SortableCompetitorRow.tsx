@@ -22,6 +22,8 @@ export function SortableCompetitorRow({
     id: competitor.id,
   });
 
+  const rowBgcolor = isDragging ? 'action.hover' : 'background.paper';
+
   return (
     <Stack
       ref={setNodeRef}
@@ -29,21 +31,28 @@ export function SortableCompetitorRow({
       spacing={1.5}
       sx={{
         alignItems: 'center',
+        width: 'fit-content',
         py: 1,
         px: 1,
         borderRadius: 2,
-        bgcolor: isDragging ? 'action.hover' : 'background.paper',
+        bgcolor: rowBgcolor,
         transform: CSS.Transform.toString(transform),
         transition,
       }}
     >
-      <IconButton size="small" {...attributes} {...listeners} aria-label="drag to reorder">
-        <DragIndicator />
-      </IconButton>
-      <Typography sx={{ minWidth: 140, flexShrink: 0 }} noWrap>
-        {competitor.name}
-      </Typography>
-      <Box sx={{ display: 'flex', gap: 1.5, overflowX: 'auto' }}>
+      <Stack
+        direction="row"
+        spacing={1.5}
+        sx={{ alignItems: 'center', position: 'sticky', left: 8, zIndex: 1, bgcolor: rowBgcolor }}
+      >
+        <IconButton size="small" {...attributes} {...listeners} aria-label="drag to reorder">
+          <DragIndicator />
+        </IconButton>
+        <Typography sx={{ minWidth: 140, flexShrink: 0 }} noWrap>
+          {competitor.name}
+        </Typography>
+      </Stack>
+      <Box sx={{ display: 'flex', gap: 1.5 }}>
         {disciplines.map((discipline) => (
           <ScoreCell
             key={discipline.id}

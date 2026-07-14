@@ -45,9 +45,21 @@ export function ScoreGrid({ competition, onScoreChange, onReorder }: ScoreGridPr
 
   return (
     <Box sx={{ overflowX: 'auto' }}>
-      <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', px: 1, pb: 1 }}>
-        <Box sx={{ width: 40, flexShrink: 0 }} />
-        <Box sx={{ minWidth: 140, flexShrink: 0 }} />
+      <Stack
+        direction="row"
+        spacing={1.5}
+        sx={{ alignItems: 'center', px: 1, pb: 1, width: 'fit-content' }}
+      >
+        <Box
+          sx={{
+            width: 40 + 140 + 12,
+            flexShrink: 0,
+            position: 'sticky',
+            left: 8,
+            zIndex: 1,
+            bgcolor: 'background.default',
+          }}
+        />
         <Box sx={{ display: 'flex', gap: 1.5 }}>
           {disciplines.map((discipline) => (
             <Typography

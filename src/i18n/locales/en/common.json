@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Competition Scoring"
+    "title": "404+ Scores"
   },
   "nav": {
     "home": "Home",
@@ -102,5 +102,9 @@
     "cs": "Czech",
     "en": "English",
     "de": "German"
+  },
+  "footer": {
+    "copyright": "© {{year}} 404plus s.r.o.",
+    "vibeCoded": "This app was vibe coded with Claude (Anthropic)"
   }
 }

@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Wettbewerbsbewertung"
+    "title": "404+ Scores"
   },
   "nav": {
     "home": "Start",
@@ -102,5 +102,9 @@
     "cs": "Tschechisch",
     "en": "Englisch",
     "de": "Deutsch"
+  },
+  "footer": {
+    "copyright": "© {{year}} 404plus s.r.o.",
+    "vibeCoded": "Diese App wurde mit Claude (Anthropic) vibe-gecoded"
   }
 }

@@ -11,8 +11,8 @@ export default defineConfig({
       registerType: 'prompt',
       includeAssets: ['favicon.svg', 'icons/apple-touch-icon.png'],
       manifest: {
-        name: 'Working Equitation Scorer',
-        short_name: 'WE Scorer',
+        name: '404+ Scores',
+        short_name: '404+ Scores',
         description: 'Offline-first scoring app for working equitation competitions',
         theme_color: '#2e5339',
         background_color: '#ffffff',

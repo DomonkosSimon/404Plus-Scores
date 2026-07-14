@@ -1,9 +1,9 @@
-# Working Equitation Scorer
+# 404+ Scores
 
 An offline-first Progressive Web App for scoring working equitation (or any
 multi-competitor, multi-discipline) competitions on site. Built with React,
 TypeScript, and MUI; deployed to Firebase Hosting with Firestore for a
-shared, synced competition history.
+shared, synced competition history. Built by 404plus s.r.o.
 
 ## Features
 

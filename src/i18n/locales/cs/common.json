@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Bodování soutěží"
+    "title": "404+ Scores"
   },
   "nav": {
     "home": "Domů",
@@ -102,5 +102,9 @@
     "cs": "Čeština",
     "en": "Angličtina",
     "de": "Němčina"
+  },
+  "footer": {
+    "copyright": "© {{year}} 404plus s.r.o.",
+    "vibeCoded": "Tato aplikace byla vibe-coded s Claude (Anthropic)"
   }
 }
