@@ -12,6 +12,7 @@ import { Close, ContentCopy, DeleteOutlined } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import type { FirestoreCompetitionDoc } from '../../domain/types';
 import { RankingTable } from '../results/RankingTable';
+import { glassDialogPaperSx } from '../../theme/glass';
 
 interface HistoryDetailModalProps {
   doc: FirestoreCompetitionDoc | null;
@@ -31,7 +32,14 @@ export function HistoryDetailModal({
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Dialog open={doc !== null} onClose={onClose} fullWidth maxWidth="sm" fullScreen={fullScreen}>
+    <Dialog
+      open={doc !== null}
+      onClose={onClose}
+      fullWidth
+      maxWidth="sm"
+      fullScreen={fullScreen}
+      slotProps={{ paper: { sx: glassDialogPaperSx } }}
+    >
       <DialogContent sx={{ pt: 3 }}>
         {doc && (
           <Stack spacing={2}>

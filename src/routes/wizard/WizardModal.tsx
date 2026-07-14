@@ -3,6 +3,7 @@ import { Close } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { WizardProvider, useWizardState } from '../../state/wizard/wizardContext';
 import { WizardStepper } from '../../components/wizard/WizardStepper';
+import { glassDialogPaperSx } from '../../theme/glass';
 import { StepName } from './StepName';
 import { StepCompetitorCount } from './StepCompetitorCount';
 import { StepCompetitorNames } from './StepCompetitorNames';
@@ -47,7 +48,14 @@ export function WizardModal({ open, onClose, onCreated }: WizardModalProps) {
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm" fullScreen={fullScreen}>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      fullWidth
+      maxWidth="sm"
+      fullScreen={fullScreen}
+      slotProps={{ paper: { sx: glassDialogPaperSx } }}
+    >
       <DialogContent sx={{ pt: 3 }}>
         {open && (
           <WizardProvider>

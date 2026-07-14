@@ -1,6 +1,8 @@
 {
   "app": {
-    "title": "404+ Scores"
+    "title": "404+ Scores",
+    "updateAvailable": "K dispozícii je nová verzia aplikácie",
+    "reload": "Obnoviť"
   },
   "nav": {
     "home": "Domov",

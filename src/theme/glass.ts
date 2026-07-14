@@ -13,3 +13,17 @@ export const glassSurface = {
 } as const;
 
 export const glassBorder = '1px solid rgba(255, 255, 255, 0.5)';
+
+/**
+ * Applied directly on each Dialog's Paper slot (in addition to the theme-level
+ * MuiDialog override) so the floating-card look never depends solely on
+ * theme style-injection order/specificity working out correctly.
+ */
+export const glassDialogPaperSx = {
+  ...glassSurface,
+  backgroundColor: 'rgba(255, 255, 255, 0.82)',
+  backgroundImage: 'none',
+  border: glassBorder,
+  borderRadius: 3,
+  boxShadow: '0 20px 60px rgba(0,0,0,0.25), 0 4px 16px rgba(0,0,0,0.12)',
+} as const;

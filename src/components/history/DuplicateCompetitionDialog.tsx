@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { NumberStepperField } from '../wizard/NumberStepperField';
 import { DynamicNameList } from '../wizard/DynamicNameList';
 import { isValidName, MAX_COMPETITORS, MAX_DISCIPLINES, MIN_COMPETITORS, MIN_DISCIPLINES } from '../../domain/validation';
+import { glassDialogPaperSx } from '../../theme/glass';
 
 interface DuplicateSource {
   name: string;
@@ -85,7 +86,13 @@ export function DuplicateCompetitionDialog({
   }
 
   return (
-    <Dialog open={open} onClose={onCancel} maxWidth="xs" fullWidth>
+    <Dialog
+      open={open}
+      onClose={onCancel}
+      maxWidth="xs"
+      fullWidth
+      slotProps={{ paper: { sx: glassDialogPaperSx } }}
+    >
       <DialogTitle>{t('history.duplicateDialog.title')}</DialogTitle>
       <DialogContent>
         <Stack spacing={3} sx={{ pt: 1 }}>

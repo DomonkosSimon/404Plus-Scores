@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { glassSurface } from './glass';
+import { glassBorder, glassSurface } from './glass';
 
 const APPLE_SYSTEM_FONT =
   '-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Roboto, system-ui, sans-serif';
@@ -54,12 +54,22 @@ export const theme = createTheme({
         },
       },
     },
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        },
+      },
+    },
     MuiDialog: {
       styleOverrides: {
         paper: {
           ...glassSurface,
           backgroundColor: 'rgba(255, 255, 255, 0.82)',
           backgroundImage: 'none',
+          border: glassBorder,
+          boxShadow:
+            '0 20px 60px rgba(0,0,0,0.25), 0 4px 16px rgba(0,0,0,0.12)',
         },
       },
     },

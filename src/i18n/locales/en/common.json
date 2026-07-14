@@ -1,6 +1,8 @@
 {
   "app": {
-    "title": "404+ Scores"
+    "title": "404+ Scores",
+    "updateAvailable": "A new version of the app is available",
+    "reload": "Reload"
   },
   "nav": {
     "home": "Home",

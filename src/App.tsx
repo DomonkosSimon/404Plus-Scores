@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 import { theme } from './theme/theme';
 import { router } from './routes/router';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { UpdatePrompt } from './components/common/UpdatePrompt';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <CssBaseline />
       <ErrorBoundary>
         <RouterProvider router={router} />
+        <UpdatePrompt />
       </ErrorBoundary>
     </ThemeProvider>
   );
