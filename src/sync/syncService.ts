@@ -130,6 +130,7 @@ export function initSyncListeners(): void {
 export async function fetchCompetitionDoc(id: ID): Promise<FirestoreCompetitionDoc | null> {
   const services = getFirebaseServices();
   if (!services) return null;
+  await ensureAnonymousAuth();
   const snapshot = await getDoc(doc(services.firestore, 'competitions', id));
   return snapshot.exists() ? (snapshot.data() as FirestoreCompetitionDoc) : null;
 }
@@ -142,12 +143,28 @@ export function subscribeToHistory(
     onUpdate([]);
     return () => {};
   }
-  const q = query(
-    collection(services.firestore, 'competitions'),
-    orderBy('finishedAt', 'desc'),
-    fsLimit(HISTORY_LIMIT),
-  );
-  return onSnapshot(q, (snapshot) => {
-    onUpdate(snapshot.docs.map((d) => d.data() as FirestoreCompetitionDoc));
+
+  // Reads require request.auth != null per our Firestore rules. On a fresh
+  // session (no prior trySync call in this browser) there's no anonymous
+  // session yet, so the listener must wait for sign-in before attaching —
+  // otherwise it fails once with permission-denied and never recovers.
+  let stopped = false;
+  let unsubscribe: (() => void) | null = null;
+
+  void ensureAnonymousAuth().then(() => {
+    if (stopped) return;
+    const q = query(
+      collection(services.firestore, 'competitions'),
+      orderBy('finishedAt', 'desc'),
+      fsLimit(HISTORY_LIMIT),
+    );
+    unsubscribe = onSnapshot(q, (snapshot) => {
+      onUpdate(snapshot.docs.map((d) => d.data() as FirestoreCompetitionDoc));
+    });
   });
+
+  return () => {
+    stopped = true;
+    unsubscribe?.();
+  };
 }
