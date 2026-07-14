@@ -1,0 +1,106 @@
+{
+  "app": {
+    "title": "Wettbewerbsbewertung"
+  },
+  "nav": {
+    "home": "Start",
+    "history": "Verlauf",
+    "settings": "Einstellungen"
+  },
+  "home": {
+    "newCompetition": "Neuer Wettbewerb",
+    "resumeInProgress": "Laufender Wettbewerb",
+    "resumeSubtitle": "Punkteeingabe fortsetzen",
+    "noInProgress": "Sie haben derzeit keinen laufenden Wettbewerb."
+  },
+  "wizard": {
+    "stepOf": "Schritt {{step}} von {{total}}",
+    "back": "Zurück",
+    "next": "Weiter",
+    "create": "Wettbewerb erstellen",
+    "name": {
+      "title": "Name des Wettbewerbs",
+      "label": "Geben Sie den Namen des Wettbewerbs ein",
+      "placeholder": "z. B. Frühjahrspokal 2026"
+    },
+    "competitorCount": {
+      "title": "Anzahl der Teilnehmer",
+      "label": "Wie viele Teilnehmer nehmen teil?"
+    },
+    "competitorNames": {
+      "title": "Namen der Teilnehmer",
+      "label": "Teilnehmer {{index}}",
+      "placeholder": "Name des Teilnehmers"
+    },
+    "disciplineCount": {
+      "title": "Anzahl der Disziplinen / Runden",
+      "label": "Wie viele Disziplinen oder Runden hat der Wettbewerb?"
+    },
+    "disciplineNames": {
+      "title": "Namen der Disziplinen",
+      "label": "Disziplin {{index}}",
+      "placeholder": "Name der Disziplin"
+    }
+  },
+  "scoring": {
+    "title": "Punkteeingabe",
+    "reorderHint": "Teilnehmer per Ziehen neu anordnen",
+    "finish": "Wettbewerb beenden",
+    "scorePlaceholder": "Punkte"
+  },
+  "results": {
+    "title": "Ergebnisse",
+    "place": "Platz",
+    "competitor": "Teilnehmer",
+    "total": "Gesamt",
+    "backHome": "Zurück zur Startseite",
+    "offlineDialog": {
+      "title": "Sie sind offline",
+      "body": "Um diesen Wettbewerb im Verlauf zu speichern, ist eine Internetverbindung erforderlich. Ihre Ergebnisse gehen nicht verloren — der Wettbewerb bleibt auf diesem Gerät gespeichert und Sie können ihn später synchronisieren.",
+      "tryAgain": "Erneut versuchen",
+      "saveForLater": "Für später speichern",
+      "discard": "Verwerfen"
+    },
+    "syncedNotice": "Der Wettbewerb wurde erfolgreich im Verlauf gespeichert.",
+    "pendingNotice": "Der Wettbewerb ist auf diesem Gerät gespeichert und wartet auf die Synchronisierung."
+  },
+  "history": {
+    "title": "Wettbewerbsverlauf",
+    "pendingSync": "Warten auf Synchronisierung",
+    "synced": "Synchronisiert",
+    "empty": "Hier gibt es noch keine Wettbewerbe.",
+    "retry": "Synchronisierung erneut versuchen",
+    "retrying": "Synchronisiere…",
+    "detail": {
+      "title": "Wettbewerbsdetails",
+      "finishedAt": "Beendet",
+      "winDirectionUsed": "Verwendete Regel"
+    }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "winDirection": {
+      "label": "Wie der Sieger ermittelt wird",
+      "highest": "Höchste Gesamtpunktzahl gewinnt",
+      "lowest": "Niedrigste Gesamtpunktzahl gewinnt",
+      "helper": "Betrifft nur ab jetzt beendete Wettbewerbe."
+    },
+    "language": {
+      "label": "App-Sprache"
+    }
+  },
+  "common": {
+    "competitor": "Teilnehmer",
+    "discipline": "Disziplin",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "delete": "Löschen",
+    "loading": "Wird geladen…"
+  },
+  "languages": {
+    "sk": "Slowakisch",
+    "cs": "Tschechisch",
+    "en": "Englisch",
+    "de": "Deutsch"
+  }
+}

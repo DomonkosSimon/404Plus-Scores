@@ -1,0 +1,106 @@
+{
+  "app": {
+    "title": "Bodování soutěží"
+  },
+  "nav": {
+    "home": "Domů",
+    "history": "Historie",
+    "settings": "Nastavení"
+  },
+  "home": {
+    "newCompetition": "Nová soutěž",
+    "resumeInProgress": "Rozpracovaná soutěž",
+    "resumeSubtitle": "Pokračovat v zadávání bodů",
+    "noInProgress": "Momentálně nemáte žádnou rozpracovanou soutěž."
+  },
+  "wizard": {
+    "stepOf": "Krok {{step}} z {{total}}",
+    "back": "Zpět",
+    "next": "Další",
+    "create": "Vytvořit soutěž",
+    "name": {
+      "title": "Název soutěže",
+      "label": "Zadejte název soutěže",
+      "placeholder": "např. Jarní pohár 2026"
+    },
+    "competitorCount": {
+      "title": "Počet soutěžících",
+      "label": "Kolik soutěžících se zúčastní?"
+    },
+    "competitorNames": {
+      "title": "Jména soutěžících",
+      "label": "Soutěžící {{index}}",
+      "placeholder": "Jméno soutěžícího"
+    },
+    "disciplineCount": {
+      "title": "Počet disciplín / kol",
+      "label": "Kolik disciplín nebo kol bude soutěž mít?"
+    },
+    "disciplineNames": {
+      "title": "Názvy disciplín",
+      "label": "Disciplína {{index}}",
+      "placeholder": "Název disciplíny"
+    }
+  },
+  "scoring": {
+    "title": "Zadávání bodů",
+    "reorderHint": "Soutěžící můžete přesouvat přetažením",
+    "finish": "Ukončit soutěž",
+    "scorePlaceholder": "body"
+  },
+  "results": {
+    "title": "Výsledky",
+    "place": "Pořadí",
+    "competitor": "Soutěžící",
+    "total": "Celkem",
+    "backHome": "Zpět na domovskou stránku",
+    "offlineDialog": {
+      "title": "Jste offline",
+      "body": "K uložení soutěže do historie je potřeba připojení k internetu. Výsledky neztratíte — soutěž zůstane uložena v zařízení a můžete ji synchronizovat později.",
+      "tryAgain": "Zkusit znovu",
+      "saveForLater": "Uložit na později",
+      "discard": "Zahodit"
+    },
+    "syncedNotice": "Soutěž byla úspěšně uložena do historie.",
+    "pendingNotice": "Soutěž je uložena v zařízení a čeká na synchronizaci."
+  },
+  "history": {
+    "title": "Historie soutěží",
+    "pendingSync": "Čeká na synchronizaci",
+    "synced": "Synchronizováno",
+    "empty": "Zatím zde nejsou žádné soutěže.",
+    "retry": "Zkusit synchronizovat",
+    "retrying": "Synchronizuji…",
+    "detail": {
+      "title": "Detail soutěže",
+      "finishedAt": "Ukončeno",
+      "winDirectionUsed": "Použité pravidlo"
+    }
+  },
+  "settings": {
+    "title": "Nastavení",
+    "winDirection": {
+      "label": "Způsob vyhodnocení vítěze",
+      "highest": "Vyhrává nejvyšší součet bodů",
+      "lowest": "Vyhrává nejnižší součet bodů",
+      "helper": "Ovlivňuje pouze budoucí ukončené soutěže."
+    },
+    "language": {
+      "label": "Jazyk aplikace"
+    }
+  },
+  "common": {
+    "competitor": "Soutěžící",
+    "discipline": "Disciplína",
+    "cancel": "Zrušit",
+    "confirm": "Potvrdit",
+    "delete": "Odstranit",
+    "loading": "Načítá se…"
+  },
+  "languages": {
+    "sk": "Slovenština",
+    "cs": "Čeština",
+    "en": "Angličtina",
+    "de": "Němčina"
+  }
+}

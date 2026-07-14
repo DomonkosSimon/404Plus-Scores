@@ -1,0 +1,106 @@
+{
+  "app": {
+    "title": "Competition Scoring"
+  },
+  "nav": {
+    "home": "Home",
+    "history": "History",
+    "settings": "Settings"
+  },
+  "home": {
+    "newCompetition": "New competition",
+    "resumeInProgress": "Competition in progress",
+    "resumeSubtitle": "Continue entering scores",
+    "noInProgress": "You have no competition in progress right now."
+  },
+  "wizard": {
+    "stepOf": "Step {{step}} of {{total}}",
+    "back": "Back",
+    "next": "Next",
+    "create": "Create competition",
+    "name": {
+      "title": "Competition name",
+      "label": "Enter the competition name",
+      "placeholder": "e.g. Spring Cup 2026"
+    },
+    "competitorCount": {
+      "title": "Number of competitors",
+      "label": "How many competitors will take part?"
+    },
+    "competitorNames": {
+      "title": "Competitor names",
+      "label": "Competitor {{index}}",
+      "placeholder": "Competitor name"
+    },
+    "disciplineCount": {
+      "title": "Number of disciplines / rounds",
+      "label": "How many disciplines or rounds will the competition have?"
+    },
+    "disciplineNames": {
+      "title": "Discipline names",
+      "label": "Discipline {{index}}",
+      "placeholder": "Discipline name"
+    }
+  },
+  "scoring": {
+    "title": "Score entry",
+    "reorderHint": "Drag competitors to reorder them",
+    "finish": "Finish competition",
+    "scorePlaceholder": "points"
+  },
+  "results": {
+    "title": "Results",
+    "place": "Place",
+    "competitor": "Competitor",
+    "total": "Total",
+    "backHome": "Back to home",
+    "offlineDialog": {
+      "title": "You're offline",
+      "body": "An internet connection is needed to save this competition to history. You won't lose your results — the competition stays saved on this device and you can sync it later.",
+      "tryAgain": "Try again",
+      "saveForLater": "Save for later",
+      "discard": "Discard"
+    },
+    "syncedNotice": "The competition was successfully saved to history.",
+    "pendingNotice": "The competition is saved on this device and waiting to sync."
+  },
+  "history": {
+    "title": "Competition history",
+    "pendingSync": "Waiting to sync",
+    "synced": "Synced",
+    "empty": "There are no competitions here yet.",
+    "retry": "Retry sync",
+    "retrying": "Syncing…",
+    "detail": {
+      "title": "Competition detail",
+      "finishedAt": "Finished",
+      "winDirectionUsed": "Rule used"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "winDirection": {
+      "label": "How to determine the winner",
+      "highest": "Highest total score wins",
+      "lowest": "Lowest total score wins",
+      "helper": "Only affects competitions finished from now on."
+    },
+    "language": {
+      "label": "App language"
+    }
+  },
+  "common": {
+    "competitor": "Competitor",
+    "discipline": "Discipline",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "loading": "Loading…"
+  },
+  "languages": {
+    "sk": "Slovak",
+    "cs": "Czech",
+    "en": "English",
+    "de": "German"
+  }
+}
