@@ -24,6 +24,7 @@ import { useOnlineStatus } from '../sync/connectivity';
 import type { Competition, FirestoreCompetitionDoc } from '../domain/types';
 import { ConfirmDialog } from '../components/common/ConfirmDialog';
 import { DuplicateCompetitionDialog } from '../components/history/DuplicateCompetitionDialog';
+import { HistoryDetailModal } from '../components/history/HistoryDetailModal';
 import { WizardModal } from './wizard/WizardModal';
 
 type DuplicateSource = { name: string; competitorNames: string[]; disciplineNames: string[] };
@@ -42,6 +43,9 @@ export function Home() {
   const [deleting, setDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
   const [wizardOpen, setWizardOpen] = useState(false);
+  const [selectedHistoryDoc, setSelectedHistoryDoc] = useState<FirestoreCompetitionDoc | null>(
+    null,
+  );
 
   useEffect(() => {
     void listInProgress().then(setInProgress);
@@ -203,7 +207,7 @@ export function Home() {
                   <Stack direction="row" sx={{ alignItems: 'center' }}>
                     <CardActionArea
                       sx={{ p: 2, flex: 1, minWidth: 0 }}
-                      onClick={() => navigate(`/history/${doc.id}`, { state: { doc } })}
+                      onClick={() => setSelectedHistoryDoc(doc)}
                     >
                       <Stack
                         direction="row"
@@ -282,6 +286,27 @@ export function Home() {
         onCreated={(competitionId) => {
           setWizardOpen(false);
           navigate(`/competition/${competitionId}/scoring`);
+        }}
+      />
+
+      <HistoryDetailModal
+        doc={selectedHistoryDoc}
+        onClose={() => setSelectedHistoryDoc(null)}
+        onDuplicate={(doc) => {
+          setSelectedHistoryDoc(null);
+          setDuplicateSource({
+            name: doc.name,
+            competitorNames: [...doc.competitors]
+              .sort((a, b) => a.order - b.order)
+              .map((c) => c.name),
+            disciplineNames: [...doc.disciplines]
+              .sort((a, b) => a.order - b.order)
+              .map((d) => d.name),
+          });
+        }}
+        onDeleteRequest={(doc) => {
+          setSelectedHistoryDoc(null);
+          setDeleteTarget({ kind: 'synced', id: doc.id });
         }}
       />
     </Container>

@@ -128,14 +128,6 @@ export function initSyncListeners(): void {
   if (navigator.onLine) void syncAllPending();
 }
 
-export async function fetchCompetitionDoc(id: ID): Promise<FirestoreCompetitionDoc | null> {
-  const services = getFirebaseServices();
-  if (!services) return null;
-  await ensureAnonymousAuth();
-  const snapshot = await getDoc(doc(services.firestore, 'competitions', id));
-  return snapshot.exists() ? (snapshot.data() as FirestoreCompetitionDoc) : null;
-}
-
 export async function deleteSyncedCompetition(id: ID): Promise<void> {
   const services = getFirebaseServices();
   if (!services) throw new Error('Firebase is not configured');
