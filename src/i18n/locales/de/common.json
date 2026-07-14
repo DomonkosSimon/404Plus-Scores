@@ -71,6 +71,18 @@
     "empty": "Hier gibt es noch keine Wettbewerbe.",
     "retry": "Synchronisierung erneut versuchen",
     "retrying": "Synchronisiere…",
+    "delete": "Löschen",
+    "deleteConfirmTitle": "Wettbewerb löschen?",
+    "deleteConfirmBody": "Dies kann nicht rückgängig gemacht werden. Der Wettbewerb wird für alle Nutzer der App entfernt.",
+    "duplicate": "Duplizieren",
+    "duplicateDialog": {
+      "title": "Wettbewerb duplizieren",
+      "name": "Name des Wettbewerbs",
+      "competitors": "Teilnehmer",
+      "disciplines": "Disziplinen",
+      "newNamePlaceholder": "Neuen Namen eingeben",
+      "confirm": "Kopie erstellen"
+    },
     "detail": {
       "title": "Wettbewerbsdetails",
       "finishedAt": "Beendet",

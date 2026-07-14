@@ -71,6 +71,18 @@
     "empty": "Zatím zde nejsou žádné soutěže.",
     "retry": "Zkusit synchronizovat",
     "retrying": "Synchronizuji…",
+    "delete": "Odstranit",
+    "deleteConfirmTitle": "Odstranit soutěž?",
+    "deleteConfirmBody": "Tuto akci nelze vrátit zpět. Soutěž bude odstraněna pro všechny uživatele aplikace.",
+    "duplicate": "Duplikovat",
+    "duplicateDialog": {
+      "title": "Duplikovat soutěž",
+      "name": "Název soutěže",
+      "competitors": "Soutěžící",
+      "disciplines": "Disciplíny",
+      "newNamePlaceholder": "Zadejte nový název",
+      "confirm": "Vytvořit kopii"
+    },
     "detail": {
       "title": "Detail soutěže",
       "finishedAt": "Ukončeno",

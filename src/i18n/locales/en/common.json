@@ -71,6 +71,18 @@
     "empty": "There are no competitions here yet.",
     "retry": "Retry sync",
     "retrying": "Syncing…",
+    "delete": "Delete",
+    "deleteConfirmTitle": "Delete competition?",
+    "deleteConfirmBody": "This cannot be undone. The competition will be removed for everyone using the app.",
+    "duplicate": "Duplicate",
+    "duplicateDialog": {
+      "title": "Duplicate competition",
+      "name": "Competition name",
+      "competitors": "Competitors",
+      "disciplines": "Disciplines",
+      "newNamePlaceholder": "Enter a new name",
+      "confirm": "Create copy"
+    },
     "detail": {
       "title": "Competition detail",
       "finishedAt": "Finished",

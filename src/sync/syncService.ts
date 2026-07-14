@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   onSnapshot,
@@ -133,6 +134,13 @@ export async function fetchCompetitionDoc(id: ID): Promise<FirestoreCompetitionD
   await ensureAnonymousAuth();
   const snapshot = await getDoc(doc(services.firestore, 'competitions', id));
   return snapshot.exists() ? (snapshot.data() as FirestoreCompetitionDoc) : null;
+}
+
+export async function deleteSyncedCompetition(id: ID): Promise<void> {
+  const services = getFirebaseServices();
+  if (!services) throw new Error('Firebase is not configured');
+  await ensureAnonymousAuth();
+  await deleteDoc(doc(services.firestore, 'competitions', id));
 }
 
 export function subscribeToHistory(

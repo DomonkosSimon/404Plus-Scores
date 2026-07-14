@@ -14,7 +14,7 @@ export default defineConfig({
         name: '404+ Scores',
         short_name: '404+ Scores',
         description: 'Offline-first scoring app for working equitation competitions',
-        theme_color: '#2e5339',
+        theme_color: '#007AFF',
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'any',

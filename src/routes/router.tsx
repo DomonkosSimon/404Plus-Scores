@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { AppShell } from '../components/common/AppShell';
 import { Home } from './Home';
-import { HistoryListScreen } from './history/HistoryListScreen';
 import { HistoryDetailScreen } from './history/HistoryDetailScreen';
 import { SettingsScreen } from './settings/SettingsScreen';
 import { ScoringScreen } from './scoring/ScoringScreen';
@@ -18,7 +17,6 @@ export const router = createBrowserRouter([
     element: <AppShell />,
     children: [
       { path: '/', element: <Home /> },
-      { path: '/history', element: <HistoryListScreen /> },
       { path: '/history/:competitionId', element: <HistoryDetailScreen /> },
       { path: '/settings', element: <SettingsScreen /> },
     ],

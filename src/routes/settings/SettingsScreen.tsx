@@ -1,4 +1,5 @@
 import {
+  Box,
   Container,
   FormControl,
   InputLabel,
@@ -12,6 +13,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useSettingsStore } from '../../state/settings/useSettingsStore';
 import type { Language, WinDirection } from '../../domain/types';
+import { Footer } from '../../components/common/Footer';
 
 const LANGUAGES: Language[] = ['sk', 'cs', 'en', 'de'];
 
@@ -65,6 +67,9 @@ export function SettingsScreen() {
           </Select>
         </FormControl>
       </Stack>
+      <Box sx={{ mt: 6 }}>
+        <Footer />
+      </Box>
     </Container>
   );
 }
