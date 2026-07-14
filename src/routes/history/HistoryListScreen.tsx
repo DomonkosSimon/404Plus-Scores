@@ -29,7 +29,12 @@ export function HistoryListScreen() {
   }, []);
 
   useEffect(() => {
-    return subscribeToHistory(setSynced);
+    return subscribeToHistory((docs) => {
+      setSynced(docs);
+      // A synced doc arriving means a background retry likely just completed;
+      // refresh the pending list so an item doesn't linger in both sections.
+      void listPendingSync().then(setPending);
+    });
   }, []);
 
   async function handleRetry(competition: Competition) {

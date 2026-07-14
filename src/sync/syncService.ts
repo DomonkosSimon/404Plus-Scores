@@ -60,9 +60,22 @@ export async function pushCompetition(competition: Competition): Promise<void> {
 }
 
 export async function trySync(competition: Competition): Promise<'synced' | 'failed'> {
-  if (!isFirebaseConfigured()) return 'failed';
+  const services = getFirebaseServices();
+  if (!isFirebaseConfigured() || !services) return 'failed';
   try {
-    await withTimeout(pushCompetition(competition), SYNC_TIMEOUT_MS);
+    await ensureAnonymousAuth();
+    // A previous attempt may have already written the document even though
+    // this client never received the ack (e.g. a timeout on a flaky venue
+    // connection). Firestore rules are append-only (create allowed, update
+    // denied), so blindly re-pushing would permanently fail with
+    // "permission denied" — check for an existing doc first.
+    const existing = await withTimeout(
+      getDoc(doc(services.firestore, 'competitions', competition.id)),
+      SYNC_TIMEOUT_MS,
+    );
+    if (!existing.exists()) {
+      await withTimeout(pushCompetition(competition), SYNC_TIMEOUT_MS);
+    }
     await markSynced(competition.id);
     return 'synced';
   } catch (error) {
