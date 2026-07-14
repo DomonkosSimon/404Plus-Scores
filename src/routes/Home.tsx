@@ -24,6 +24,7 @@ import { useOnlineStatus } from '../sync/connectivity';
 import type { Competition, FirestoreCompetitionDoc } from '../domain/types';
 import { ConfirmDialog } from '../components/common/ConfirmDialog';
 import { DuplicateCompetitionDialog } from '../components/history/DuplicateCompetitionDialog';
+import { WizardModal } from './wizard/WizardModal';
 
 type DuplicateSource = { name: string; competitorNames: string[]; disciplineNames: string[] };
 type DeleteTarget = { kind: 'pending' | 'synced'; id: string };
@@ -40,6 +41,7 @@ export function Home() {
   const [deleteTarget, setDeleteTarget] = useState<DeleteTarget | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [wizardOpen, setWizardOpen] = useState(false);
 
   useEffect(() => {
     void listInProgress().then(setInProgress);
@@ -103,7 +105,7 @@ export function Home() {
           variant="contained"
           size="large"
           startIcon={<AddCircle />}
-          onClick={() => navigate('/new/name')}
+          onClick={() => setWizardOpen(true)}
         >
           {t('home.newCompetition')}
         </Button>
@@ -271,6 +273,15 @@ export function Home() {
         onCancel={() => {
           setDeleteTarget(null);
           setDeleteError(null);
+        }}
+      />
+
+      <WizardModal
+        open={wizardOpen}
+        onClose={() => setWizardOpen(false)}
+        onCreated={(competitionId) => {
+          setWizardOpen(false);
+          navigate(`/competition/${competitionId}/scoring`);
         }}
       />
     </Container>

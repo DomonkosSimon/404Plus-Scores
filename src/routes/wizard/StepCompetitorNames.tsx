@@ -1,34 +1,22 @@
-import { useEffect } from 'react';
 import { Button, Stack, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useWizardDispatch, useWizardState } from '../../state/wizard/wizardContext';
 import { DynamicNameList } from '../../components/wizard/DynamicNameList';
 import { isValidName } from '../../domain/validation';
-import { wizardPaths } from './paths';
 
 export function StepCompetitorNames() {
   const { t } = useTranslation();
-  const { competitorCount, competitorNames } = useWizardState();
+  const { competitorNames } = useWizardState();
   const dispatch = useWizardDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (competitorCount === null) navigate(wizardPaths[1], { replace: true });
-  }, [competitorCount, navigate]);
-
-  if (competitorCount === null) return null;
 
   const canProceed = competitorNames.length > 0 && competitorNames.every(isValidName);
 
   function handleNext() {
     dispatch({ type: 'NEXT' });
-    navigate(wizardPaths[3]);
   }
 
   function handleBack() {
     dispatch({ type: 'BACK' });
-    navigate(wizardPaths[1]);
   }
 
   return (

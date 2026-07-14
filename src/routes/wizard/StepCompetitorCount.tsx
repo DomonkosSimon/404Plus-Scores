@@ -1,28 +1,23 @@
 import { Button, Stack, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useWizardDispatch, useWizardState } from '../../state/wizard/wizardContext';
 import { NumberStepperField } from '../../components/wizard/NumberStepperField';
 import { MAX_COMPETITORS, MIN_COMPETITORS } from '../../domain/validation';
-import { wizardPaths } from './paths';
 
 export function StepCompetitorCount() {
   const { t } = useTranslation();
   const { competitorCount } = useWizardState();
   const dispatch = useWizardDispatch();
-  const navigate = useNavigate();
 
   function handleNext() {
     if (competitorCount === null) {
       dispatch({ type: 'SET_COMPETITOR_COUNT', count: MIN_COMPETITORS });
     }
     dispatch({ type: 'NEXT' });
-    navigate(wizardPaths[2]);
   }
 
   function handleBack() {
     dispatch({ type: 'BACK' });
-    navigate(wizardPaths[0]);
   }
 
   return (

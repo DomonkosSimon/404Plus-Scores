@@ -1,28 +1,23 @@
 import { Button, Stack, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useWizardDispatch, useWizardState } from '../../state/wizard/wizardContext';
 import { NumberStepperField } from '../../components/wizard/NumberStepperField';
 import { MAX_DISCIPLINES, MIN_DISCIPLINES } from '../../domain/validation';
-import { wizardPaths } from './paths';
 
 export function StepDisciplineCount() {
   const { t } = useTranslation();
   const { disciplineCount } = useWizardState();
   const dispatch = useWizardDispatch();
-  const navigate = useNavigate();
 
   function handleNext() {
     if (disciplineCount === null) {
       dispatch({ type: 'SET_DISCIPLINE_COUNT', count: MIN_DISCIPLINES });
     }
     dispatch({ type: 'NEXT' });
-    navigate(wizardPaths[4]);
   }
 
   function handleBack() {
     dispatch({ type: 'BACK' });
-    navigate(wizardPaths[2]);
   }
 
   return (

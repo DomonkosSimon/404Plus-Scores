@@ -1,25 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button, Stack, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useWizardDispatch, useWizardState } from '../../state/wizard/wizardContext';
 import { DynamicNameList } from '../../components/wizard/DynamicNameList';
 import { isValidName } from '../../domain/validation';
 import { createCompetition } from '../../storage/competitionsRepo';
-import { wizardPaths } from './paths';
 
-export function StepDisciplineNames() {
+interface StepDisciplineNamesProps {
+  onCreated: (competitionId: string) => void;
+}
+
+export function StepDisciplineNames({ onCreated }: StepDisciplineNamesProps) {
   const { t } = useTranslation();
-  const { disciplineCount, disciplineNames, name, competitorNames } = useWizardState();
+  const { disciplineNames, name, competitorNames } = useWizardState();
   const dispatch = useWizardDispatch();
-  const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
-
-  useEffect(() => {
-    if (disciplineCount === null) navigate(wizardPaths[3], { replace: true });
-  }, [disciplineCount, navigate]);
-
-  if (disciplineCount === null) return null;
 
   const canProceed = disciplineNames.length > 0 && disciplineNames.every(isValidName);
 
@@ -30,15 +25,11 @@ export function StepDisciplineNames() {
       competitorNames,
       disciplineNames,
     });
-    // Navigating away from /new/* unmounts the WizardProvider, which already
-    // discards this state — dispatching RESET here would race with that
-    // unmount and could redirect back into the wizard via the guard effects.
-    navigate(`/competition/${competition.id}/scoring`, { replace: true });
+    onCreated(competition.id);
   }
 
   function handleBack() {
     dispatch({ type: 'BACK' });
-    navigate(wizardPaths[3]);
   }
 
   return (
@@ -60,7 +51,7 @@ export function StepDisciplineNames() {
           variant="contained"
           size="large"
           disabled={!canProceed || submitting}
-          onClick={handleCreate}
+          onClick={() => void handleCreate()}
           sx={{ flex: 1 }}
         >
           {t('wizard.create')}
