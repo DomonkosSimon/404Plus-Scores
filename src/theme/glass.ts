@@ -26,4 +26,8 @@ export const glassDialogPaperSx = {
   border: glassBorder,
   borderRadius: 3,
   boxShadow: '0 20px 60px rgba(0,0,0,0.25), 0 4px 16px rgba(0,0,0,0.12)',
+  // Never taller than 70% of the viewport — content scrolls internally
+  // instead of the whole dialog growing to fill the screen.
+  maxHeight: '70vh',
+  margin: 2,
 } as const;

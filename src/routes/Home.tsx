@@ -282,10 +282,16 @@ export function Home() {
 
       <WizardModal
         open={wizardOpen}
-        onClose={() => setWizardOpen(false)}
-        onCreated={(competitionId) => {
+        onClose={() => {
           setWizardOpen(false);
-          navigate(`/competition/${competitionId}/scoring`);
+          // A competition may have been created (now in_progress) even if
+          // the user closes before finishing scoring — refresh so it shows
+          // up as resumable instead of silently vanishing.
+          void listInProgress().then(setInProgress);
+        }}
+        onFinished={(competitionId) => {
+          setWizardOpen(false);
+          navigate(`/competition/${competitionId}/results`);
         }}
       />
 

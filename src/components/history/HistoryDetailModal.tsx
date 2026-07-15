@@ -1,13 +1,4 @@
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  IconButton,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Button, Dialog, DialogContent, IconButton, Stack, Typography } from '@mui/material';
 import { Close, ContentCopy, DeleteOutlined } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import type { FirestoreCompetitionDoc } from '../../domain/types';
@@ -28,8 +19,6 @@ export function HistoryDetailModal({
   onDeleteRequest,
 }: HistoryDetailModalProps) {
   const { t } = useTranslation();
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Dialog
@@ -37,7 +26,6 @@ export function HistoryDetailModal({
       onClose={onClose}
       fullWidth
       maxWidth="sm"
-      fullScreen={fullScreen}
       slotProps={{ paper: { sx: glassDialogPaperSx } }}
     >
       <DialogContent sx={{ pt: 3 }}>
