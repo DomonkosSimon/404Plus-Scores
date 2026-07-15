@@ -45,10 +45,17 @@ export function SortableCompetitorRow({
         // full height and its rounded corner isn't left with a square
         // strip above/below where the row's own padding used to be.
         pr: 1,
+        // Rounded on all four corners, same as the sticky name column
+        // (not just the right side): at rest, this row sits directly
+        // behind the sticky column at the exact same position, and since
+        // both share the same background color, the row's own corner
+        // shape is what actually shows against the page behind it — a
+        // square corner here would show through the sticky column's
+        // rounded notch regardless of the sticky's own radius.
         // Corner-specific radius props (unlike the borderRadius shorthand)
         // aren't multiplied by theme.shape.borderRadius, so the value is
         // spelled out here to match — see gridLayout.ts.
-        borderRadius: `0 ${STICKY_COLUMN_RADIUS_PX} ${STICKY_COLUMN_RADIUS_PX} 0`,
+        borderRadius: STICKY_COLUMN_RADIUS_PX,
         bgcolor: rowBgcolor,
         transform: CSS.Transform.toString(transform),
         transition,
