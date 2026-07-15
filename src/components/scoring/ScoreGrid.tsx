@@ -51,7 +51,18 @@ export function ScoreGrid({
   }
 
   return (
-    <Box sx={{ overflowX: 'auto' }}>
+    <Box
+      sx={{
+        overflowX: 'auto',
+        // Safari doesn't reliably clip content that scrolls past a
+        // position:sticky descendant's edge inside this container (visible
+        // as the row's square corner briefly showing past the sticky name
+        // column while scrolling). Forcing this box onto its own
+        // compositing layer works around it.
+        transform: 'translateZ(0)',
+        WebkitTransform: 'translateZ(0)',
+      }}
+    >
       <Stack
         direction="row"
         spacing={1.5}
