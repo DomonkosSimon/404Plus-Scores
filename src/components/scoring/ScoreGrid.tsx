@@ -55,14 +55,14 @@ export function ScoreGrid({
       <Stack
         direction="row"
         spacing={1.5}
-        sx={{ alignItems: 'center', px: 1, pb: 1, width: 'fit-content' }}
+        sx={{ alignItems: 'center', pr: 1, pb: 1, width: 'fit-content' }}
       >
         <Box
           sx={{
             width: STICKY_NAME_COLUMN_WIDTH,
             flexShrink: 0,
             position: 'sticky',
-            left: 8,
+            left: 0,
             zIndex: 1,
             bgcolor: 'background.default',
           }}
