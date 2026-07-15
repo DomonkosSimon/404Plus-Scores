@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import { AppShell } from '../components/common/AppShell';
 import { Home } from './Home';
 import { SettingsScreen } from './settings/SettingsScreen';
-import { ResultsScreen } from './results/ResultsScreen';
 
 export const router = createBrowserRouter([
   {
@@ -12,5 +11,4 @@ export const router = createBrowserRouter([
       { path: '/settings', element: <SettingsScreen /> },
     ],
   },
-  { path: '/competition/:competitionId/results', element: <ResultsScreen /> },
 ]);

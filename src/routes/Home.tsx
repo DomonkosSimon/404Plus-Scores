@@ -11,7 +11,6 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   createCompetition,
@@ -33,7 +32,6 @@ type DeleteTarget = { kind: 'pending' | 'synced'; id: string };
 
 export function Home() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const online = useOnlineStatus();
   const [inProgress, setInProgress] = useState<Competition[]>([]);
   const [pending, setPending] = useState<Competition[]>([]);
@@ -286,14 +284,11 @@ export function Home() {
         open={wizardOpen}
         onClose={() => {
           setWizardOpen(false);
-          // A competition may have been created (now in_progress) even if
-          // the user closes before finishing scoring — refresh so it shows
-          // up as resumable instead of silently vanishing.
+          // The competition may now be in_progress (closed before finishing),
+          // pending_sync, or synced (finished within the modal) — refresh
+          // both lists so it shows up in the right place.
           void listInProgress().then(setInProgress);
-        }}
-        onFinished={(competitionId) => {
-          setWizardOpen(false);
-          navigate(`/competition/${competitionId}/results`);
+          void listPendingSync().then(setPending);
         }}
       />
 
@@ -302,10 +297,7 @@ export function Home() {
         onClose={() => {
           setScoringCompetitionId(null);
           void listInProgress().then(setInProgress);
-        }}
-        onFinished={(competitionId) => {
-          setScoringCompetitionId(null);
-          navigate(`/competition/${competitionId}/results`);
+          void listPendingSync().then(setPending);
         }}
       />
 

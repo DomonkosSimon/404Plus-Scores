@@ -5,6 +5,7 @@ import { WizardProvider, useWizardState } from '../../state/wizard/wizardContext
 import { WizardStepper } from '../../components/wizard/WizardStepper';
 import { ModalHeader } from '../../components/common/ModalHeader';
 import { ScoringPanel } from '../../components/scoring/ScoringPanel';
+import { ResultsPanel } from '../../components/results/ResultsPanel';
 import { glassDialogPaperSx, scoringDialogPaperSx } from '../../theme/glass';
 import { StepName } from './StepName';
 import { StepCompetitorCount } from './StepCompetitorCount';
@@ -15,7 +16,6 @@ import { StepDisciplineNames } from './StepDisciplineNames';
 interface WizardModalProps {
   open: boolean;
   onClose: () => void;
-  onFinished: (competitionId: string) => void;
 }
 
 const STEP_TITLE_KEYS = [
@@ -53,11 +53,13 @@ function WizardModalInner({
   );
 }
 
-export function WizardModal({ open, onClose, onFinished }: WizardModalProps) {
+export function WizardModal({ open, onClose }: WizardModalProps) {
   const [createdCompetitionId, setCreatedCompetitionId] = useState<string | null>(null);
+  const [finished, setFinished] = useState(false);
 
   function handleClose() {
     setCreatedCompetitionId(null);
+    setFinished(false);
     onClose();
   }
 
@@ -74,14 +76,15 @@ export function WizardModal({ open, onClose, onFinished }: WizardModalProps) {
       <DialogContent sx={{ pt: 3 }}>
         {open &&
           (createdCompetitionId ? (
-            <ScoringPanel
-              competitionId={createdCompetitionId}
-              onClose={handleClose}
-              onFinished={(id) => {
-                setCreatedCompetitionId(null);
-                onFinished(id);
-              }}
-            />
+            finished ? (
+              <ResultsPanel competitionId={createdCompetitionId} onClose={handleClose} />
+            ) : (
+              <ScoringPanel
+                competitionId={createdCompetitionId}
+                onClose={handleClose}
+                onFinished={() => setFinished(true)}
+              />
+            )
           ) : (
             <WizardProvider>
               <WizardModalInner onClose={handleClose} onCreated={setCreatedCompetitionId} />
