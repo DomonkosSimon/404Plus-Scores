@@ -3,6 +3,7 @@ import { Box, IconButton, Stack, Typography } from '@mui/material';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import type { Competitor, Discipline, ScoreValue } from '../../domain/types';
+import { STICKY_NAME_COLUMN_WIDTH } from './gridLayout';
 import { ScoreCell } from './ScoreCell';
 
 interface SortableCompetitorRowProps {
@@ -54,6 +55,8 @@ export function SortableCompetitorRow({
           bgcolor: rowBgcolor,
           borderTopLeftRadius: 2,
           borderBottomLeftRadius: 2,
+          width: STICKY_NAME_COLUMN_WIDTH,
+          flexShrink: 0,
         }}
       >
         <IconButton
@@ -65,7 +68,7 @@ export function SortableCompetitorRow({
         >
           <DragIndicator />
         </IconButton>
-        <Typography sx={{ minWidth: 140, flexShrink: 0 }} noWrap>
+        <Typography sx={{ flex: 1, minWidth: 0 }} noWrap>
           {competitor.name}
         </Typography>
       </Stack>

@@ -13,6 +13,7 @@ import {
   arrayMove,
 } from '@dnd-kit/sortable';
 import type { Competition, ScoreValue } from '../../domain/types';
+import { STICKY_NAME_COLUMN_WIDTH } from './gridLayout';
 import { SortableCompetitorRow } from './SortableCompetitorRow';
 
 interface ScoreGridProps {
@@ -58,7 +59,7 @@ export function ScoreGrid({
       >
         <Box
           sx={{
-            width: 40 + 140 + 12,
+            width: STICKY_NAME_COLUMN_WIDTH,
             flexShrink: 0,
             position: 'sticky',
             left: 8,
