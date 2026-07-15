@@ -65,6 +65,8 @@ export function ScoreGrid({
             left: 0,
             zIndex: 1,
             bgcolor: 'background.default',
+            borderRight: '1px solid',
+            borderColor: 'divider',
           }}
         />
         <Box sx={{ display: 'flex', gap: 1.5 }}>
