@@ -25,6 +25,7 @@ import type { Competition, FirestoreCompetitionDoc } from '../domain/types';
 import { ConfirmDialog } from '../components/common/ConfirmDialog';
 import { DuplicateCompetitionDialog } from '../components/history/DuplicateCompetitionDialog';
 import { HistoryDetailModal } from '../components/history/HistoryDetailModal';
+import { ScoringModal } from '../components/scoring/ScoringModal';
 import { WizardModal } from './wizard/WizardModal';
 
 type DuplicateSource = { name: string; competitorNames: string[]; disciplineNames: string[] };
@@ -46,6 +47,7 @@ export function Home() {
   const [selectedHistoryDoc, setSelectedHistoryDoc] = useState<FirestoreCompetitionDoc | null>(
     null,
   );
+  const [scoringCompetitionId, setScoringCompetitionId] = useState<string | null>(null);
 
   useEffect(() => {
     void listInProgress().then(setInProgress);
@@ -97,7 +99,7 @@ export function Home() {
   }) {
     const competition = await createCompetition(result);
     setDuplicateSource(null);
-    navigate(`/competition/${competition.id}/scoring`);
+    setScoringCompetitionId(competition.id);
   }
 
   const hasHistory = pending.length > 0 || synced.length > 0;
@@ -120,7 +122,7 @@ export function Home() {
               <Card key={competition.id} variant="outlined">
                 <CardActionArea
                   sx={{ p: 2 }}
-                  onClick={() => navigate(`/competition/${competition.id}/scoring`)}
+                  onClick={() => setScoringCompetitionId(competition.id)}
                 >
                   <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
                     <PlayArrow color="primary" />
@@ -291,6 +293,18 @@ export function Home() {
         }}
         onFinished={(competitionId) => {
           setWizardOpen(false);
+          navigate(`/competition/${competitionId}/results`);
+        }}
+      />
+
+      <ScoringModal
+        competitionId={scoringCompetitionId}
+        onClose={() => {
+          setScoringCompetitionId(null);
+          void listInProgress().then(setInProgress);
+        }}
+        onFinished={(competitionId) => {
+          setScoringCompetitionId(null);
           navigate(`/competition/${competitionId}/results`);
         }}
       />

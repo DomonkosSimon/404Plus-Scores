@@ -10,6 +10,7 @@ interface SortableCompetitorRowProps {
   disciplines: Discipline[];
   scoresByDiscipline: Record<string, ScoreValue>;
   onScoreChange: (disciplineId: string, value: ScoreValue) => void;
+  reorderEnabled: boolean;
 }
 
 export function SortableCompetitorRow({
@@ -17,9 +18,11 @@ export function SortableCompetitorRow({
   disciplines,
   scoresByDiscipline,
   onScoreChange,
+  reorderEnabled,
 }: SortableCompetitorRowProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: competitor.id,
+    disabled: !reorderEnabled,
   });
 
   const rowBgcolor = isDragging ? 'action.hover' : 'background.paper';
@@ -45,7 +48,13 @@ export function SortableCompetitorRow({
         spacing={1.5}
         sx={{ alignItems: 'center', position: 'sticky', left: 8, zIndex: 1, bgcolor: rowBgcolor }}
       >
-        <IconButton size="small" {...attributes} {...listeners} aria-label="drag to reorder">
+        <IconButton
+          size="small"
+          disabled={!reorderEnabled}
+          {...attributes}
+          {...listeners}
+          aria-label="drag to reorder"
+        >
           <DragIndicator />
         </IconButton>
         <Typography sx={{ minWidth: 140, flexShrink: 0 }} noWrap>

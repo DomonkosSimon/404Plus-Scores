@@ -46,7 +46,9 @@
   },
   "scoring": {
     "title": "Punkteeingabe",
+    "allowReorder": "Neuanordnen erlauben",
     "reorderHint": "Teilnehmer per Ziehen neu anordnen",
+    "reorderLockedHint": "Die Neuanordnung ist gesperrt, um versehentliche Änderungen zu vermeiden",
     "finish": "Wettbewerb beenden",
     "scorePlaceholder": "Punkte"
   },

@@ -46,7 +46,9 @@
   },
   "scoring": {
     "title": "Score entry",
+    "allowReorder": "Allow reordering",
     "reorderHint": "Drag competitors to reorder them",
+    "reorderLockedHint": "Reordering is locked to prevent accidental changes",
     "finish": "Finish competition",
     "scorePlaceholder": "points"
   },

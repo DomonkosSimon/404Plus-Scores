@@ -46,7 +46,9 @@
   },
   "scoring": {
     "title": "Zadávanie bodov",
+    "allowReorder": "Povoliť zmenu poradia",
     "reorderHint": "Súťažiacich môžete presúvať potiahnutím",
+    "reorderLockedHint": "Zmena poradia je uzamknutá, aby nedošlo k náhodnému preusporiadaniu",
     "finish": "Ukončiť súťaž",
     "scorePlaceholder": "body"
   },

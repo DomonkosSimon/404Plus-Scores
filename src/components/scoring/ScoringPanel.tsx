@@ -1,5 +1,13 @@
-import { useEffect } from 'react';
-import { Box, Button, CircularProgress, Stack, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  FormControlLabel,
+  Stack,
+  Switch,
+  Typography,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useActiveCompetitionStore } from '../../state/activeCompetition/useActiveCompetitionStore';
 import { useSettingsStore } from '../../state/settings/useSettingsStore';
@@ -18,6 +26,7 @@ export function ScoringPanel({ competitionId, onFinished }: ScoringPanelProps) {
   const reorderCompetitors = useActiveCompetitionStore((s) => s.reorderCompetitors);
   const finishCompetition = useActiveCompetitionStore((s) => s.finishCompetition);
   const winDirection = useSettingsStore((s) => s.winDirection);
+  const [reorderEnabled, setReorderEnabled] = useState(false);
 
   useEffect(() => {
     void loadCompetition(competitionId);
@@ -40,8 +49,19 @@ export function ScoringPanel({ competitionId, onFinished }: ScoringPanelProps) {
     <Stack spacing={2}>
       <Box>
         <Typography variant="h5">{competition.name}</Typography>
+      </Box>
+      <Box>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={reorderEnabled}
+              onChange={(event) => setReorderEnabled(event.target.checked)}
+            />
+          }
+          label={t('scoring.allowReorder')}
+        />
         <Typography variant="body2" color="text.secondary">
-          {t('scoring.reorderHint')}
+          {reorderEnabled ? t('scoring.reorderHint') : t('scoring.reorderLockedHint')}
         </Typography>
       </Box>
       <ScoreGrid
@@ -50,6 +70,7 @@ export function ScoringPanel({ competitionId, onFinished }: ScoringPanelProps) {
           void updateScore(competitorId, disciplineId, value)
         }
         onReorder={(ids) => void reorderCompetitors(ids)}
+        reorderEnabled={reorderEnabled}
       />
       <Button variant="contained" size="large" onClick={() => void handleFinish()}>
         {t('scoring.finish')}

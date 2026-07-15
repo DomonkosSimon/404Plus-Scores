@@ -19,9 +19,15 @@ interface ScoreGridProps {
   competition: Competition;
   onScoreChange: (competitorId: string, disciplineId: string, value: ScoreValue) => void;
   onReorder: (newOrderIds: string[]) => void;
+  reorderEnabled: boolean;
 }
 
-export function ScoreGrid({ competition, onScoreChange, onReorder }: ScoreGridProps) {
+export function ScoreGrid({
+  competition,
+  onScoreChange,
+  onReorder,
+  reorderEnabled,
+}: ScoreGridProps) {
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }));
   const competitors = [...competition.competitors].sort((a, b) => a.order - b.order);
   const disciplines = [...competition.disciplines].sort((a, b) => a.order - b.order);
@@ -89,6 +95,7 @@ export function ScoreGrid({ competition, onScoreChange, onReorder }: ScoreGridPr
                 onScoreChange={(disciplineId, value) =>
                   onScoreChange(competitor.id, disciplineId, value)
                 }
+                reorderEnabled={reorderEnabled}
               />
             ))}
           </Stack>
