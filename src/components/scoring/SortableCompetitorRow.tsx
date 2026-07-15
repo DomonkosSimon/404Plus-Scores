@@ -33,7 +33,7 @@ export function SortableCompetitorRow({
       direction="row"
       spacing={1.5}
       sx={{
-        alignItems: 'center',
+        alignItems: 'stretch',
         width: 'fit-content',
         py: 1,
         px: 1,
@@ -46,7 +46,15 @@ export function SortableCompetitorRow({
       <Stack
         direction="row"
         spacing={1.5}
-        sx={{ alignItems: 'center', position: 'sticky', left: 8, zIndex: 1, bgcolor: rowBgcolor }}
+        sx={{
+          alignItems: 'center',
+          position: 'sticky',
+          left: 8,
+          zIndex: 1,
+          bgcolor: rowBgcolor,
+          borderTopLeftRadius: 2,
+          borderBottomLeftRadius: 2,
+        }}
       >
         <IconButton
           size="small"

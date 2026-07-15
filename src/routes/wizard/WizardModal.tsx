@@ -5,7 +5,7 @@ import { WizardProvider, useWizardState } from '../../state/wizard/wizardContext
 import { WizardStepper } from '../../components/wizard/WizardStepper';
 import { ModalHeader } from '../../components/common/ModalHeader';
 import { ScoringPanel } from '../../components/scoring/ScoringPanel';
-import { glassDialogPaperSx } from '../../theme/glass';
+import { glassDialogPaperSx, scoringDialogPaperSx } from '../../theme/glass';
 import { StepName } from './StepName';
 import { StepCompetitorCount } from './StepCompetitorCount';
 import { StepCompetitorNames } from './StepCompetitorNames';
@@ -61,13 +61,15 @@ export function WizardModal({ open, onClose, onFinished }: WizardModalProps) {
     onClose();
   }
 
+  const isScoring = createdCompetitionId !== null;
+
   return (
     <Dialog
       open={open}
       onClose={handleClose}
-      fullWidth
-      maxWidth="sm"
-      slotProps={{ paper: { sx: glassDialogPaperSx } }}
+      fullWidth={!isScoring}
+      maxWidth={isScoring ? false : 'sm'}
+      slotProps={{ paper: { sx: isScoring ? scoringDialogPaperSx : glassDialogPaperSx } }}
     >
       <DialogContent sx={{ pt: 3 }}>
         {open &&

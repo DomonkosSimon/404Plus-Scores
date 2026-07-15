@@ -1,5 +1,5 @@
 import { Dialog, DialogContent } from '@mui/material';
-import { glassDialogPaperSx } from '../../theme/glass';
+import { scoringDialogPaperSx } from '../../theme/glass';
 import { ScoringPanel } from './ScoringPanel';
 
 interface ScoringModalProps {
@@ -13,9 +13,8 @@ export function ScoringModal({ competitionId, onClose, onFinished }: ScoringModa
     <Dialog
       open={competitionId !== null}
       onClose={onClose}
-      fullWidth
-      maxWidth="sm"
-      slotProps={{ paper: { sx: glassDialogPaperSx } }}
+      maxWidth={false}
+      slotProps={{ paper: { sx: scoringDialogPaperSx } }}
     >
       <DialogContent sx={{ pt: 3 }}>
         {competitionId && (

@@ -31,3 +31,16 @@ export const glassDialogPaperSx = {
   maxHeight: '70vh',
   margin: 2,
 } as const;
+
+/**
+ * Used instead of glassDialogPaperSx wherever the score grid is shown —
+ * the grid's column count varies per competition, so the dialog should
+ * grow to fit it rather than being pinned to a fixed breakpoint width.
+ * Paired with Dialog's maxWidth={false} so this sx fully controls sizing.
+ */
+export const scoringDialogPaperSx = {
+  ...glassDialogPaperSx,
+  width: 'fit-content',
+  maxWidth: '90vw',
+  minWidth: { xs: 'auto', sm: 360 },
+} as const;
