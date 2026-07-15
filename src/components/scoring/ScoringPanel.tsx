@@ -4,21 +4,25 @@ import {
   Button,
   CircularProgress,
   FormControlLabel,
+  IconButton,
   Stack,
   Switch,
   Typography,
 } from '@mui/material';
+import { Close } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { useActiveCompetitionStore } from '../../state/activeCompetition/useActiveCompetitionStore';
 import { useSettingsStore } from '../../state/settings/useSettingsStore';
+import { ModalHeader } from '../common/ModalHeader';
 import { ScoreGrid } from './ScoreGrid';
 
 interface ScoringPanelProps {
   competitionId: string;
+  onClose: () => void;
   onFinished: (competitionId: string) => void;
 }
 
-export function ScoringPanel({ competitionId, onFinished }: ScoringPanelProps) {
+export function ScoringPanel({ competitionId, onClose, onFinished }: ScoringPanelProps) {
   const { t } = useTranslation();
   const competition = useActiveCompetitionStore((s) => s.competition);
   const loadCompetition = useActiveCompetitionStore((s) => s.loadCompetition);
@@ -34,9 +38,16 @@ export function ScoringPanel({ competitionId, onFinished }: ScoringPanelProps) {
 
   if (!competition || competition.id !== competitionId) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
-        <CircularProgress />
-      </Box>
+      <>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1 }}>
+          <IconButton aria-label={t('common.cancel')} onClick={onClose}>
+            <Close />
+          </IconButton>
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
+          <CircularProgress />
+        </Box>
+      </>
     );
   }
 
@@ -47,9 +58,7 @@ export function ScoringPanel({ competitionId, onFinished }: ScoringPanelProps) {
 
   return (
     <Stack spacing={2}>
-      <Box>
-        <Typography variant="h5">{competition.name}</Typography>
-      </Box>
+      <ModalHeader title={competition.name} onClose={onClose} closeLabel={t('common.cancel')} />
       <Box>
         <FormControlLabel
           control={

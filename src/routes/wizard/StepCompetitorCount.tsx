@@ -22,7 +22,6 @@ export function StepCompetitorCount() {
 
   return (
     <Stack spacing={3}>
-      <Typography variant="h5">{t('wizard.competitorCount.title')}</Typography>
       <Typography color="text.secondary">{t('wizard.competitorCount.label')}</Typography>
       <NumberStepperField
         value={competitorCount}

@@ -22,7 +22,6 @@ export function StepDisciplineCount() {
 
   return (
     <Stack spacing={3}>
-      <Typography variant="h5">{t('wizard.disciplineCount.title')}</Typography>
       <Typography color="text.secondary">{t('wizard.disciplineCount.label')}</Typography>
       <NumberStepperField
         value={disciplineCount}

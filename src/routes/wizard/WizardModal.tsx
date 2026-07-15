@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Box, Dialog, DialogContent, IconButton } from '@mui/material';
-import { Close } from '@mui/icons-material';
+import { Dialog, DialogContent } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { WizardProvider, useWizardState } from '../../state/wizard/wizardContext';
 import { WizardStepper } from '../../components/wizard/WizardStepper';
+import { ModalHeader } from '../../components/common/ModalHeader';
 import { ScoringPanel } from '../../components/scoring/ScoringPanel';
 import { glassDialogPaperSx } from '../../theme/glass';
 import { StepName } from './StepName';
@@ -18,6 +18,14 @@ interface WizardModalProps {
   onFinished: (competitionId: string) => void;
 }
 
+const STEP_TITLE_KEYS = [
+  'wizard.name.title',
+  'wizard.competitorCount.title',
+  'wizard.competitorNames.title',
+  'wizard.disciplineCount.title',
+  'wizard.disciplineNames.title',
+] as const;
+
 function WizardModalInner({
   onClose,
   onCreated,
@@ -30,11 +38,11 @@ function WizardModalInner({
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1 }}>
-        <IconButton aria-label={t('common.cancel')} onClick={onClose}>
-          <Close />
-        </IconButton>
-      </Box>
+      <ModalHeader
+        title={t(STEP_TITLE_KEYS[step])}
+        onClose={onClose}
+        closeLabel={t('common.cancel')}
+      />
       <WizardStepper step={step} />
       {step === 0 && <StepName />}
       {step === 1 && <StepCompetitorCount />}
@@ -46,7 +54,6 @@ function WizardModalInner({
 }
 
 export function WizardModal({ open, onClose, onFinished }: WizardModalProps) {
-  const { t } = useTranslation();
   const [createdCompetitionId, setCreatedCompetitionId] = useState<string | null>(null);
 
   function handleClose() {
@@ -65,20 +72,14 @@ export function WizardModal({ open, onClose, onFinished }: WizardModalProps) {
       <DialogContent sx={{ pt: 3 }}>
         {open &&
           (createdCompetitionId ? (
-            <>
-              <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1 }}>
-                <IconButton aria-label={t('common.cancel')} onClick={handleClose}>
-                  <Close />
-                </IconButton>
-              </Box>
-              <ScoringPanel
-                competitionId={createdCompetitionId}
-                onFinished={(id) => {
-                  setCreatedCompetitionId(null);
-                  onFinished(id);
-                }}
-              />
-            </>
+            <ScoringPanel
+              competitionId={createdCompetitionId}
+              onClose={handleClose}
+              onFinished={(id) => {
+                setCreatedCompetitionId(null);
+                onFinished(id);
+              }}
+            />
           ) : (
             <WizardProvider>
               <WizardModalInner onClose={handleClose} onCreated={setCreatedCompetitionId} />

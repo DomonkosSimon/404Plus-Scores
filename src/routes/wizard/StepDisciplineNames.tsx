@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Stack, Typography } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useWizardDispatch, useWizardState } from '../../state/wizard/wizardContext';
 import { DynamicNameList } from '../../components/wizard/DynamicNameList';
@@ -34,7 +34,6 @@ export function StepDisciplineNames({ onCreated }: StepDisciplineNamesProps) {
 
   return (
     <Stack spacing={3}>
-      <Typography variant="h5">{t('wizard.disciplineNames.title')}</Typography>
       <DynamicNameList
         names={disciplineNames}
         labelFor={(index) => t('wizard.disciplineNames.label', { index: index + 1 })}

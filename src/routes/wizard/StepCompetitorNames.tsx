@@ -1,4 +1,4 @@
-import { Button, Stack, Typography } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useWizardDispatch, useWizardState } from '../../state/wizard/wizardContext';
 import { DynamicNameList } from '../../components/wizard/DynamicNameList';
@@ -21,7 +21,6 @@ export function StepCompetitorNames() {
 
   return (
     <Stack spacing={3}>
-      <Typography variant="h5">{t('wizard.competitorNames.title')}</Typography>
       <DynamicNameList
         names={competitorNames}
         labelFor={(index) => t('wizard.competitorNames.label', { index: index + 1 })}

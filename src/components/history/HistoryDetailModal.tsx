@@ -1,9 +1,10 @@
-import { Button, Dialog, DialogContent, IconButton, Stack, Typography } from '@mui/material';
-import { Close, ContentCopy, DeleteOutlined } from '@mui/icons-material';
+import { Button, Dialog, DialogContent, Stack, Typography } from '@mui/material';
+import { ContentCopy, DeleteOutlined } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import type { FirestoreCompetitionDoc } from '../../domain/types';
 import { RankingTable } from '../results/RankingTable';
 import { glassDialogPaperSx } from '../../theme/glass';
+import { ModalHeader } from '../common/ModalHeader';
 
 interface HistoryDetailModalProps {
   doc: FirestoreCompetitionDoc | null;
@@ -31,12 +32,7 @@ export function HistoryDetailModal({
       <DialogContent sx={{ pt: 3 }}>
         {doc && (
           <Stack spacing={2}>
-            <Stack direction="row" sx={{ justifyContent: 'flex-end' }}>
-              <IconButton aria-label={t('common.cancel')} onClick={onClose}>
-                <Close />
-              </IconButton>
-            </Stack>
-            <Typography variant="h5">{doc.name}</Typography>
+            <ModalHeader title={doc.name} onClose={onClose} closeLabel={t('common.cancel')} />
             <Typography variant="body2" color="text.secondary">
               {t('history.detail.finishedAt')}: {new Date(doc.finishedAt).toLocaleString()}
             </Typography>

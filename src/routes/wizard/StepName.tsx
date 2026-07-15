@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Stack, TextField, Typography } from '@mui/material';
+import { Button, Stack, TextField } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useWizardDispatch, useWizardState } from '../../state/wizard/wizardContext';
 import { isValidName } from '../../domain/validation';
@@ -19,7 +19,6 @@ export function StepName() {
 
   return (
     <Stack spacing={3}>
-      <Typography variant="h5">{t('wizard.name.title')}</Typography>
       <TextField
         label={t('wizard.name.label')}
         placeholder={t('wizard.name.placeholder')}
