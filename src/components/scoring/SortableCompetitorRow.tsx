@@ -3,7 +3,11 @@ import { Box, IconButton, Stack, Typography } from '@mui/material';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import type { Competitor, Discipline, ScoreValue } from '../../domain/types';
-import { STICKY_LEFT_INSET, STICKY_NAME_COLUMN_WIDTH } from './gridLayout';
+import {
+  STICKY_COLUMN_RADIUS_PX,
+  STICKY_LEFT_INSET,
+  STICKY_NAME_COLUMN_WIDTH,
+} from './gridLayout';
 import { ScoreCell } from './ScoreCell';
 
 interface SortableCompetitorRowProps {
@@ -36,10 +40,15 @@ export function SortableCompetitorRow({
       sx={{
         alignItems: 'stretch',
         width: 'fit-content',
-        py: 1,
+        // No vertical padding here — it lives on each flex child instead
+        // (see below), so the sticky column's own box spans the row's
+        // full height and its rounded corner isn't left with a square
+        // strip above/below where the row's own padding used to be.
         pr: 1,
-        borderTopRightRadius: 2,
-        borderBottomRightRadius: 2,
+        // Corner-specific radius props (unlike the borderRadius shorthand)
+        // aren't multiplied by theme.shape.borderRadius, so the value is
+        // spelled out here to match — see gridLayout.ts.
+        borderRadius: `0 ${STICKY_COLUMN_RADIUS_PX} ${STICKY_COLUMN_RADIUS_PX} 0`,
         bgcolor: rowBgcolor,
         transform: CSS.Transform.toString(transform),
         transition,
@@ -54,10 +63,10 @@ export function SortableCompetitorRow({
           left: 0,
           zIndex: 1,
           bgcolor: rowBgcolor,
-          borderRight: '1px solid',
-          borderColor: 'divider',
+          borderRadius: `${STICKY_COLUMN_RADIUS_PX} 0 0 ${STICKY_COLUMN_RADIUS_PX}`,
           width: STICKY_NAME_COLUMN_WIDTH,
           flexShrink: 0,
+          py: 1,
           pl: STICKY_LEFT_INSET,
         }}
       >
@@ -74,7 +83,7 @@ export function SortableCompetitorRow({
           {competitor.name}
         </Typography>
       </Stack>
-      <Box sx={{ display: 'flex', gap: 1.5 }}>
+      <Box sx={{ display: 'flex', gap: 1.5, py: 1 }}>
         {disciplines.map((discipline) => (
           <ScoreCell
             key={discipline.id}
